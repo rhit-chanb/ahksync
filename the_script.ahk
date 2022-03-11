@@ -97,7 +97,7 @@ Return
 
 
 ;close all windows with this name, closes all windows if no name is specified lol
-!k::
+!+k::
 InputBox, searchforthisstring, Window Deleter, Enter the name of the window you would like to erase from the face of the earth.
 DetectHiddenWindows, Off
 SetTitleMatchMode, 2
