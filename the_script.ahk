@@ -77,7 +77,7 @@ Send, {Up}
 Send, {Tab}
 Return
 
-^!f::
+^+!f::
 Run  display64.exe /rotate:180 /toggle
 Return
 
