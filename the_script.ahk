@@ -95,6 +95,11 @@ Return
 Run \\print.rose-hulman.edu
 Return
 
+!t::
+if (A_ComputerName == "RHIT-R90VFC8R") {
+	Run C:\Users\chanb\Desktop\TETR.IO.lnk
+}
+Return
 
 ;close all windows with this name, closes all windows if no name is specified lol
 !+k::
@@ -379,6 +384,10 @@ Return
 ::curll::
 SendRaw, {}
 Send, {Left}
+Return
+
+::tiemm::
+Send, ™
 Return
 
 !v::
