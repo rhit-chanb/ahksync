@@ -396,6 +396,14 @@ Return
 Send, %clipboard%
 Return
 
+^!v::
+setkeydelay 1500,500
+Send, %clipboard%
+setkeydelay 0, 20
+
+Return
+
+
 Numpad0::
 KeyDown := !KeyDown
 If KeyDown
