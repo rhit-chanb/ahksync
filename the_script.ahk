@@ -16,12 +16,16 @@ HideTrayTip() {
 Toggle = 0
 
 
+
+
 !f::
 Send, {Left}
 Return
 !j::
 Send, {Right}
 Return
+
+
 
 !g::
 Send, {Home}
@@ -188,6 +192,11 @@ Return
 #Delete::FileRecycleEmpty ; win + del
 return
 
+!a::
+Sleep, 150000
+TrayTip, AK Mission Rerun, Auto Deploy Ready, 10
+Return
+
 
 F8::Suspend
 Return
@@ -203,6 +212,20 @@ Return
     Sleep, 34
   }
 return
+
+!+g::
+autoGlaiveToggle := !autoGlaiveToggle
+   while, autoGlaiveToggle
+	{
+				Click, 1425, 245
+				sleep, 500
+				Click, 1425, 280
+				sleep,  500
+				Click, 1425, 245
+				sleep, 500
+				Click, 1425, 383
+				sleep, 2500
+	}
 
 
 ;move mouse to top left corner of window
@@ -244,6 +267,18 @@ Sleep, 100
 Send, {Control up}
 Return
 
+!+p::
+Run, cmd.exe, C:\Users\Brian\Desktop\youtube-dl
+Sleep, 100
+SendRaw, yt-dlp -x --audio-format mp3 -o "G:\\My Drive\`%(playlist)s/`%(playlist_index)s - `%(title)s.`%(ext)s" 
+Send, {Space} 
+Send, {Control down}
+Sleep, 100
+Send, v
+Sleep, 100
+Send, {Control up}
+Return
+
 !+u::
 Run, cmd.exe , C:\Users\Brian\Desktop\youtube-dl
 Sleep, 100
@@ -270,7 +305,7 @@ Return
 
 sticks = 0
 
-!+p::
+!+i::
 sticksTrading := !sticksTrading
    while, sticksTrading
 	{
@@ -390,6 +425,15 @@ Return
 Send, ™
 Return
 
+::gauzz::
+run, cmd.exe
+sleep, 250
+sendraw, ssh chanb@glados.csse.rose-hulman.edu
+sleep, 250
+send, {enter}
+return
+
+
 !v::
 ;InputBox, password, 「ROKKU ZA TASUKUBAARU」, paste what you want to paste`, edit and click ok to confirm paste
 ;Send, %password%
@@ -404,22 +448,22 @@ setkeydelay 0, 20
 Return
 
 
-Numpad0::
-KeyDown := !KeyDown
-If KeyDown
-	SendInput {v down}
-Else
-	SendInput {v up}
-Return
-
-Numpad1::
-tog:=!tog
-if(tog)
-    SetTimer, clk, 10, On
-else
-    SetTimer, clk, Off
-return
- 
-clk:
-Click
-return
+;Numpad0::
+;KeyDown := !KeyDown
+;If KeyDown
+;	SendInput {v down}
+;Else
+;	SendInput {v up}
+;Return
+;
+;Numpad1::
+;tog:=!tog
+;if(tog)
+;    SetTimer, clk, 10, On
+;else
+;    SetTimer, clk, Off
+;return
+; 
+;clk:
+;Click
+;return
