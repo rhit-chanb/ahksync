@@ -15,10 +15,13 @@ HideTrayTip() {
 #MaxThreadsPerHotkey, 2
 Toggle = 0
 
+;^s::
 
-!f::
-Send, {Left}
-Return
+;return
+
+;!f::
+;Send, {Left}
+;Return
 !j::
 Send, {Right}
 Return
@@ -196,14 +199,6 @@ Return
 !Esc::ExitApp
 Return
 
-!z::
-  while GetKeyState("z")
-  {
-    Click
-    Sleep, 34
-  }
-return
-
 
 ;move mouse to top left corner of window
 !l::
@@ -233,7 +228,7 @@ Send, {Control Up}
 Return
 
 !+y::
-Run, cmd.exe , C:\Users\Brian\Desktop\youtube-dl
+Run, cmd.exe , C:\Users\chanb\Desktop\youtube-dl
 Sleep, 100
 SendRaw, yt-dlp -x --audio-format mp3 -o "G:\\My Drive\\ASMR Megacollection\`%(title)s.`%(ext)s"
 Send, {Space} 
