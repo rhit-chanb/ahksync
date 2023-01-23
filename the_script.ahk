@@ -435,9 +435,9 @@ return
 
 
 !v::
-;InputBox, password, 「ROKKU ZA TASUKUBAARU」, paste what you want to paste`, edit and click ok to confirm paste
-;Send, %password%
-Send, %clipboard%
+InputBox, password, 「ROKKU ZA TASUKUBAARU」, paste what you want to paste`, edit and click ok to confirm paste
+Send, %password%
+;Send, %clipboard%
 Return
 
 ^!v::
