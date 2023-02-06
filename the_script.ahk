@@ -398,6 +398,10 @@ setkeydelay 0, 20
 
 Return
 
+!Backspace::
+If(GetKeyState("Backspace", "P" = 1))
+Send {Backspace 5}
+return
 
 Numpad0::
 KeyDown := !KeyDown
