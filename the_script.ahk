@@ -15,8 +15,46 @@ HideTrayTip() {
 #MaxThreadsPerHotkey, 2
 Toggle = 0
 
+!0::
+;kill new
+Send, ^w
+Sleep, 500
+;enter select move mode
+Send, m
+Sleep, 100
+Send, m
+Sleep, 500
+; move selection to next card
+Send, {Control Down}
+Sleep, 250
+Send, {Right}
+Sleep, 250
+Send, {Right}
+Sleep, 250
+Send, {Right}
+Sleep, 250
+Send, {Right}
+Sleep, 250
+Send, {Right}
+Sleep, 250
+Send, {Control Up}
+Sleep, 250
+; copy to clipboard
+Send, ^c
+Sleep, 500
+; create new
+Send, ^n
+Sleep, 500
+Send, {Enter}
+Sleep, 500
+; paste and save
+Send, ^v
+Sleep, 500
+Send, ^s
+return
 
 
+return
 
 !f::
 Send, {Left}
@@ -34,11 +72,17 @@ Return
 Send, {End}
 Return 
 
-XButton1:
-  Send, {F23 down}
-  Sleep, 60
-  Send, {F23 up}
-return
+!+c::
+ToggleClk := !ToggleClk
+Loop
+{
+If (!ToggleClk)
+Break
+Click
+Sleep 83 ; Make this number higher for slower clicks, lower for faster.
+}
+Return
+
 
 
 XButton2:
@@ -193,7 +237,7 @@ Return
 return
 
 !a::
-Sleep, 150000
+Sleep, 900000
 TrayTip, AK Mission Rerun, Auto Deploy Ready, 10
 Return
 
