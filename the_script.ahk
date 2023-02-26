@@ -33,6 +33,17 @@ Return
 Send, {End}
 Return 
 
+!+c::
+ToggleClk := !ToggleClk
+Loop
+{
+If (!ToggleClk)
+Break
+Click
+Sleep 83 ; Make this number higher for slower clicks, lower for faster.
+}
+Return
+
 XButton1:
   Send, {F23 down}
   Sleep, 60
@@ -68,20 +79,11 @@ RETURN
  StringUpper Clipboard, Clipboard, T
  Send %Clipboard%
 RETURN
-
-
-!+d::
-Send, /**
-Send, {Enter}
-Send, *
-Send, {Enter}
-Send, */
-Send, {Up}
-Send, {Tab}
-Return
-
+; flip screen, only works on laptop
 ^+!f::
+if (A_ComputerName == "RHIT-R90VFC8R") {
 Run  display64.exe /rotate:180 /toggle
+}
 Return
 
 
@@ -89,7 +91,9 @@ Return
 Run chrome.exe "https://moodle.rose-hulman.edu/" " --new-window "
 Sleep, 1000
 Send, {Tab}
-Sleep, 1000
+Sleep, 100
+Send, {Tab}
+Sleep, 100
 Send, {Enter}
 Return
 
@@ -192,6 +196,18 @@ Return
 return
 
 
+!a::
+breakToggle := !breakToggle
+TrayTip, break toggle, break toggle %breakToggle%
+Loop
+{
+If (!breakToggle)
+Break
+Sleep, 900000
+TrayTip, stand/stretch/break, stand/stretch/break, 10
+}
+Return
+
 F8::Suspend
 Return
 
@@ -200,25 +216,18 @@ Return
 Return
 
 
-;move mouse to top left corner of window
-!l::
-MouseMove, 0, 0
-Return
-
 !space::reload
 return
 
-
-!x::
-;Run,C:\Users\chanb\Gopher (Controller to Mouse)\Gopher.exe, C:\Users\chanb\Gopher (Controller to Mouse)
-Run, C:\Users\Brian\Downloads\Gopher.exe
-Return
-
-
+; alt y download youtube video as video 
 !y::
+if (A_ComputerName == "RHIT-R90VFC8R") {
+Run, cmd.exe , C:\Users\chanb\Desktop\youtube-dl
+} else {
 Run, cmd.exe , C:\Users\Brian\Desktop\youtube-dl
+}
 Sleep, 100
-Send, youtube-dl
+Send, yt-dlp -o "G:\\My Drive\\yt-dlp-videos\`%(title)s.`%(ext)s"
 Send, {Space}
 Send, {Control Down}
 Sleep, 100
@@ -227,8 +236,13 @@ Sleep, 100
 Send, {Control Up}
 Return
 
+;alt shift y for download as audio, into asmr folder
 !+y::
+if (A_ComputerName == "RHIT-R90VFC8R") {
 Run, cmd.exe , C:\Users\chanb\Desktop\youtube-dl
+} else {
+Run, cmd.exe , C:\Users\Brian\Desktop\youtube-dl
+}
 Sleep, 100
 SendRaw, yt-dlp -x --audio-format mp3 -o "G:\\My Drive\\ASMR Megacollection\`%(title)s.`%(ext)s"
 Send, {Space} 
@@ -240,9 +254,13 @@ Send, {Control up}
 Return
 
 !+u::
+if (A_ComputerName == "RHIT-R90VFC8R") {
+Run, cmd.exe , C:\Users\chanb\Desktop\youtube-dl
+} else {
 Run, cmd.exe , C:\Users\Brian\Desktop\youtube-dl
+}
 Sleep, 100
-SendRaw, yt-dlp -x --audio-format mp3 -o "G:\\My Drive\\`%(title)s.`%(ext)s"
+SendRaw, yt-dlp -x --audio-format mp3 -o "G:\\My Drive\\yt-dlp-music\`%(title)s.`%(ext)s"
 Send, {Space} 
 Send, {Control down}
 Sleep, 100
@@ -252,9 +270,13 @@ Send, {Control up}
 Return
 
 !+t::
+if (A_ComputerName == "RHIT-R90VFC8R") {
+Run, cmd.exe , C:\Users\chanb\Desktop\youtube-dl
+} else {
 Run, cmd.exe , C:\Users\Brian\Desktop\youtube-dl
+}
 Sleep, 100
-SendRaw, youtube-dl -x --audio-format mp3 -o "D:\\youtube-dl-output\`%(title)s.`%(ext)s"
+SendRaw, youtube-dl -x --audio-format mp3 -o "G:\\My Drive\\yt-dlp-music\`%(playlist)s/`%(playlist_index)s - `%(title)s.`%(ext)s"
 Send, {Space} 
 Send, {Control down}
 Sleep, 100
@@ -263,43 +285,8 @@ Sleep, 100
 Send, {Control up}
 Return
 
-sticks = 0
-
-!+p::
-sticksTrading := !sticksTrading
-   while, sticksTrading
-	{
-				Click, 635, 311
-				sleep, 50
-				Click, 1337, 369
-				sleep,  50
-	}
-return
-
-!+l::
-sticksCrafting := !sticksCrafting
-   while, sticksCrafting
-	{
-				Click, 420, 378
-				sleep, 50
-				Click, 1580, 350
-				sleep,  50
-	}
-return
-
-!+o::
-planksCrafting := !planksCrafting
-   while, planksCrafting
-	{
-				Click, 520, 378
-				sleep, 50
-				Click, 1580, 350
-				sleep,  50
-	}
-return
-
 ;best hotstring
-::resumee::résumé
+::resumee::résumé 
 Return
 
 ;hotstring section is down here if you havent realized yet
@@ -330,38 +317,6 @@ Return
 Send, ✔
 Return
 
-::haachamapanik::
-Send, https://tenor.com/view/akai-haato-hololive-not-like-this-panic-shake-gif-17045844
-Return
-
-::haachamaslam::
-Send, https://tenor.com/view/akai-haato-hololive-slam-fist-why-gif-17712177
-Return
-
-::okayuflash::
-Send, https://tenor.com/view/okayu-nekomata-okayu-blinding-gif-17979062
-Return
-
-::okayudance::
-Send, https://tenor.com/view/nekomata-okayu-hololive-dancing-vtuber-gif-17712180
-Return
-
-::okayuspin::
-Send, https://tenor.com/view/okayu-hololive-spinning-dizzy-roll-gif-16214013
-Return
-
-::okapekojam::
-Send, https://tenor.com/view/usada-pekora-nekomata-okayu-hololive-vtuber-gif-16460095
-Return
-
-::koronemath::
-Send, https://tenor.com/view/inugami-korone-hololive-thinking-anime-confused-gif-17902545
-Return
-
-::fubukiconfuse::
-Send, https://imgur.com/cjBnf2L
-Return
-
 ::kusaa::
 Send, 草
 Return
@@ -386,16 +341,9 @@ Send, ™
 Return
 
 !v::
-;InputBox, password, 「ROKKU ZA TASUKUBAARU」, paste what you want to paste`, edit and click ok to confirm paste
-;Send, %password%
-Send, %clipboard%
-Return
-
-^!v::
-setkeydelay 1500,500
-Send, %clipboard%
-setkeydelay 0, 20
-
+InputBox, password, 「ROKKU ZA TASUKUBAARU」, paste what you want to paste`, edit and click ok to confirm paste
+Send, %password%
+;Send, %clipboard%
 Return
 
 !Backspace::
@@ -403,22 +351,14 @@ If(GetKeyState("Backspace", "P" = 1))
 Send {Backspace 5}
 return
 
-Numpad0::
-KeyDown := !KeyDown
-If KeyDown
-	SendInput {v down}
-Else
-	SendInput {v up}
-Return
-
-Numpad1::
-tog:=!tog
-if(tog)
-    SetTimer, clk, 10, On
-else
-    SetTimer, clk, Off
+::gauzz::
+run, cmd.exe
+sleep, 250
+sendraw, ssh chanb@glados.csse.rose-hulman.edu
+sleep, 250
+send, {enter}
 return
- 
+
 clk:
 Click
 return
