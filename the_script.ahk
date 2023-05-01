@@ -61,6 +61,14 @@ if WinActive("ahk_class WindowsForms10.Window.8.app.0.116c861_r13_ad1")
 }
 Return
 
+F9:
+Send, {Control Down}
+Sleep, 100
+Send, v
+Sleep, 100
+Send, {Control Up}
+return
+
 
 ^+u::                                                                 ; convert text to upper
  Sendinput, ^{c}
@@ -105,23 +113,6 @@ Return
 !t::
 if (A_ComputerName == "RHIT-R90VFC8R") {
 	Run C:\Users\chanb\Desktop\TETR.IO.lnk
-}
-Return
-
-;close all windows with this name, closes all windows if no name is specified lol
-!+k::
-InputBox, searchforthisstring, Window Deleter, Enter the name of the window you would like to erase from the face of the earth.
-DetectHiddenWindows, Off
-SetTitleMatchMode, 2
-WinGet, WindowList, List
-
-Loop, %WindowList%
-{
-   WinGetTitle, Title, % "ahk_id " . WindowList%A_Index%
-   IfInString, Title, %searchforthisstring%
-	{
-   		WinClose, % "ahk_id " . WindowList%A_Index%
-	}
 }
 Return
 
