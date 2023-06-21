@@ -14,7 +14,7 @@ HideTrayTip() {
 
 #MaxThreadsPerHotkey, 2
 Toggle = 0
-
+ToggleTV = 0
 ;^s::
 
 ;return
@@ -96,15 +96,18 @@ Return
 
 
 !m::
-Run chrome.exe "https://moodle.rose-hulman.edu/" " --new-window "
-Sleep, 1000
-Send, {Tab}
-Sleep, 100
-Send, {Tab}
-Sleep, 100
-Send, {Enter}
+if (A_ComputerName == "RHIT-R90VFC8R"){
+Return
+}
+Run multimonitortool.exe /LoadConfig C:\Users\Brian\Documents\multimonitortool-x64\monitor_configs\default_2_screens.cfg
 Return
 
+!+m::
+if (A_ComputerName == "RHIT-R90VFC8R"){
+Return
+}
+Run multimonitortool.exe /LoadConfig C:\Users\Brian\Documents\multimonitortool-x64\monitor_configs\3_screens.cfg
+Return 
 
 !p::
 Run \\print.rose-hulman.edu
